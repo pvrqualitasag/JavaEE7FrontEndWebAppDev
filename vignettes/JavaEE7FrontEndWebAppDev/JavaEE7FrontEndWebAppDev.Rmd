@@ -1,0 +1,43 @@
+---
+title: "Java EE 7 Front-End Webapplication Development"
+author: "Peter von Rohr"
+date: 2016-06-06
+output: 
+  beamer_presentation:
+    fig_caption: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results = 'asis')
+```
+
+## Aufbau einer Webapplikation
+```{r JavaEETieredArchitecture}
+rcoursetools::insertOdgAsPdf(psOdgFileStem = "JavaEETieredArchitecture")
+```
+
+
+## Java EE 7 Technologien
+Blau: Web Profile, grün: Teil von SE, gelb: zusätzlich im Full Profile
+```{r JavaEE7Technologies}
+rcoursetools::insertOdgAsPdf(psOdgFileStem = "JavaEE7Technologies")
+```
+
+
+## Servlet
+- Java-Klassen auf dem Server plus Annotation und Konfiguration
+- Erweitern ein Interface typischerweise `HttpServlet`
+- Verwendung, falls Code im Vergleich zum Content überwiegt
+- Von Developern geschrieben
+- Rückgabe: Komplettes UI als HTML, welches vom Browser dargestellt wird
+
+
+## JSP (Java Server Page)
+- Textdatei, entspricht einer mit Tags und Expression Language angereicherten HTML-Seite
+- Werden vom Applikationsserver automatisch in Servlets umgewandelt
+- Verwendung, falls mehr Content als Code
+- Von Designern geschrieben
+
+
+## JAX-RS (REST)
+- Web-service, welcher
