@@ -4,6 +4,8 @@ author: "Peter von Rohr"
 date: 2016-06-06
 output: 
   beamer_presentation:
+    colortheme: beaver
+    theme: Madrid
     fig_caption: false
 ---
 
@@ -40,4 +42,35 @@ rcoursetools::insertOdgAsPdf(psOdgFileStem = "JavaEE7Technologies")
 
 
 ## JAX-RS (REST)
-- Web-service, welcher
+- JAX-RS (REST): Java API for RESTful Web Services (JAX-RS)
+- Web-service, welcher "Resourcen" per URLs zur Verfügung stellt
+- Stellt kein UI zur Verfügung, sondern nur Daten als XML oder JSON
+- Operationen sind durch HTTP bestimmt (GET, PUT, POST, DELETE, OPTIONS)
+
+
+## JAX-RS: Hello World
+
+#### Server
+```
+import javax.ws.rs.GET;
+import javax.we.rs.PATH;
+
+@Path("message")
+public class MessageResource {
+  @GET
+  public String getMessage(){
+    return "Hello World!";
+  }
+}
+```
+#### Client
+`GET http://server:port/mywebapp/resources/message` gibt als Resultat: "Hello World!"
+
+
+
+## Mehr Infos
+
+Kursunterlagen: 
+
+`Q:\Projekte\ICAR_ADE_Datenaustausch\ \\`
+`JavaEE7FrontEndWebApplicationDevelopment`
