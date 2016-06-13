@@ -77,7 +77,7 @@ public class MessageResource {
 ...
   @POST
   public void setMessage(String message){
-    this.message = message
+    this.message = message;
   }
   
 ```
