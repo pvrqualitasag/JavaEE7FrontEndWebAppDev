@@ -82,6 +82,16 @@ public class MessageResource {
   
 ```
 
+
+## Resourcen Design
+
+- Resource ist eindeutig bestimmt durch einen URL
+
+```{r ResourceDesignDiagram}
+rcoursetools::insertOdgAsPdf(psOdgFileStem = "ResourceDesign")
+```
+
+
 ## Mehr Infos
 
 Kursunterlagen: 
