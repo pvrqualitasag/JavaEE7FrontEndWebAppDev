@@ -1,7 +1,7 @@
 ---
 title: "Java EE 7 Front-End Webapplication Development"
 author: "Peter von Rohr"
-date: 2016-06-06
+date: 2016-06-13
 output: 
   beamer_presentation:
     colortheme: beaver
@@ -38,7 +38,7 @@ rcoursetools::insertOdgAsPdf(psOdgFileStem = "JavaEE7Technologies")
 - Textdatei, entspricht einer mit Tags und Expression Language angereicherten HTML-Seite
 - Werden vom Applikationsserver automatisch in Servlets umgewandelt
 - Verwendung, falls mehr Content als Code
-- Von Designern geschrieben
+- Designer können diese schreiben
 
 
 ## JAX-RS (REST)
@@ -48,12 +48,12 @@ rcoursetools::insertOdgAsPdf(psOdgFileStem = "JavaEE7Technologies")
 - Operationen sind durch HTTP bestimmt (GET, PUT, POST, DELETE, OPTIONS)
 
 
-## JAX-RS: Hello World
+## JAX-RS: Hello World - GET
 
 #### Server
 ```
 import javax.ws.rs.GET;
-import javax.we.rs.PATH;
+import javax.ws.rs.PATH;
 
 @Path("message")
 public class MessageResource {
@@ -64,9 +64,23 @@ public class MessageResource {
 }
 ```
 #### Client
-`GET http://server:port/mywebapp/resources/message` gibt als Resultat: "Hello World!"
+`HTTP GET http://server:port/mywebapp/resources/message` $\rightarrow$ Resultat: "Hello World!"
 
 
+## JAX-RS: Hello World - POST
+
+#### Client
+`HTTP POST` and `http://server:port/mywebapp/resources/message` mit "Hello World!" im Body
+
+#### Server
+```
+...
+  @POST
+  public void setMessage(String message){
+    this.message = message
+  }
+  
+```
 
 ## Mehr Infos
 
