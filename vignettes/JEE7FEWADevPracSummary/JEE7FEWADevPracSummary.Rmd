@@ -1,0 +1,220 @@
+---
+title:  Java EE 7 Front End WebApp Development Practicals Summary
+author: Peter von Rohr
+date: 2016-06-23
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results = 'asis')
+```
+
+```{r DocumentStatus, eval=TRUE}
+r6obj_docstat <- rmddochelper::R6ClassDocuStatus$new()
+r6obj_docstat$setProject(psProject = "JEE7FEWADevPracSummary")
+# r6obj_docstat$setVersion(psVersion = "0.0.901")
+# r6obj_docstat$setStatus(psStatus = "Initialisation")
+# r6obj_docstat$setVersion(psVersion = "0.0.902")
+# r6obj_docstat$setStatus(psStatus = "Practicals Lesson 4")
+# r6obj_docstat$setVersion(psVersion = "0.0.903")
+# r6obj_docstat$setStatus(psStatus = "Practicals Lesson 5 - Developing Servlets")
+#r6obj_docstat$setVersion(psVersion = "0.0.904")
+#r6obj_docstat$setStatus(psStatus = "Practicals Lesson 6 - Views with JSP")
+# r6obj_docstat$setVersion(psVersion = "0.0.905")
+# r6obj_docstat$setStatus(psStatus = "Practicals Lesson 7 - RESTful Web Services")
+r6obj_docstat$setVersion(psVersion = "0.0.906")
+r6obj_docstat$setStatus(psStatus = "P 8 - RESTful Client")
+r6obj_docstat$setDate(psDate = "2016-06-28")
+r6obj_docstat$include_doc_stat(psTitle = "## Document Status")
+```
+
+
+```{r TableAbbreviation}
+r6ob_abbrtable <- rmddochelper::R6ClassTableAbbrev$new()
+r6ob_abbrtable$include_abbr_table(psAbbrTitle = "## Abbreviations")
+```
+
+## Disclaimer
+This document contains a summary of the practicals offered during the course `r r6ob_abbrtable$add_abbrev(psAbbrev = "JEE7FEWADev", psMeaning = "Java Enterprise Edition 7 Front End Web Application Development")`. The goal of this summary is to quickly be able to familiarize with the material presented in the different chapters in order to get a better overview over the topic of webapplication development and a deaper understanding on the mechanisms behind the whole area.
+
+The practicals are based on certain technologies one of which is `r r6ob_abbrtable$add_abbrev(psAbbrev = "NB", psMeaning = "Netbeans")`
+
+
+## Introduction
+
+
+## Practicals
+
+### P 3: JavaBeans, Logging and Annotation
+An instance of `java.util.Logger` is added to an existing program.
+
+#### P 3-1: Logging
+Instances of Logger objects are created for each class in which logging should be done. It is important to declare the Logger instance as `public static final`. Inside the code where events should be logged, the method `log()` of the Logger object is called. This method accepts two arguments 
+
+1. Level: indicates whether logging is active
+2. Message: string to be logged
+
+Configuration of the logger is taken by default form a property file in `<path-to-jdk>/jre/lib`. The configuration properties file and the path to that file can be adapted using the `Project Properties` in NB. 
+
+```{r NbProjectProperties}
+rqudocuhelper::insertOdgAsPdf(psOdgFileStem = "NbProjectProperties")
+```
+
+
+### P 4: Comparing Java EE Web Components
+Basic steps of creating a web application and component types are explored
+
+#### P 4-1: Creating a Java Web Application
+Java web application is created which contains a Servlet, a `r r6ob_abbrtable$add_abbrev(psAbbrev = "JSP", psMeaning = "Java Server Page")` and a `r r6ob_abbrtable$add_abbrev(psAbbrev = "JAX-RS", psMeaning = "Java API for RESTful Web Services")` web service.
+
+A __JSP__ is created using the file creation and templating functionality in NB. Additional information can be inserted using `r r6ob_abbrtable$add_abbrev(psAbbrev = "JSTL", psMeaning = "Java Standard Tagging Library")` together with library methods from `java.util` or other Java components. The result of the JSP can be shown by right-clicking on the JSP-file and by clicking on `Run`. 
+
+```{r NewMyJsp}
+rqudocuhelper::insertOdgAsPdf(psOdgFileStem = "NewMyJsp", pnPaperWidthScale = 0.5)
+```
+
+A __Servlet__ is created in NB similarly using the file creation and temlating functionality. But from a technical point of view, it is something completely different from a JSP. While JSPs are enriched HTML-pages which are automatically converted into Servlets on the application server, Servlets are full-fledged java programs which run on the application server. The author or the programmer has to write everything by him- or herself.
+
+A __RESTful__ service is created by adding special annotations to a `r r6ob_abbrtable$add_abbrev(psAbbrev = "POJO", psMeaning = "Plain Old Java Object")`. The minimal set of annotations consists of
+
+* `@Path("<name_of_path>")`: Annotation of the POJO denoting the path of the resource
+* `@GET`: Annotation of the method that should be executed when an HTTP-GET request is issued by the client
+* `@PUT`: same as above but for HTTP-Put
+
+Besides the annotation, the JAX-RS webservice also needs a __deployment descriptor__ which is a file called `web.xml` in  xml-format that maps the resource to the servlet. At this early stage, we need a browser plugin such as `RestClient` for Firefox to test the RS-functionality.
+
+
+#### P 4-2: Using the Web Inspector
+A `r r6ob_abbrtable$add_abbrev(psAbbrev = "CSS", psMeaning = "Cascading Style Sheet")` is added to the `WebApp` project and is used to change the layout of the result returned from the servlet `MyServlet`. The `CSS` is included into the servlet via the insertion of an html Link into the result returned form the servlet.
+
+A new CSS-file can easily be created using the creation functionality provided by NB.
+
+```{r NewCss}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "NewCss", pnPaperWidthScale = 0.5)
+```
+
+Once the Webpage which is served from the modified Servlet is shown, the so-called `Web Inspector` can be used to show the structure of the page. The `Web Inspector` consists of a Browser-specific tool that is used to display the different elements of the Webpage. Since these tools are Browser-specific, they must be activated for each browser in a different way. In most cases there is a Browser-Menu for `Tools`. In Firefox, one can activate it as shown below.
+
+```{r WebInspector}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "WebInspector", pnPaperWidthScale = 0.5)
+```
+
+One very useful feature of the Web Inspector is the possibility to change existing css-settings graphically in the browser. The changes can then be included in the css-file on the server.
+
+\pagebreak
+
+### P 5: Developing Servlets
+In this lesson practicals servlets which act as controllers will be created
+
+#### P 5-1: Servlet Controller Class for Media Manager Application
+Here, we start to create the `WebMediaManager` application which is the project for the rest of the course. The controller class is called `FileMediaManager` which implements the interface `MediaManager`. This class is responsible for managing the single media items. Those items are represented by simple POJOs which are specified in class `MediaItem`. The class `MediaGroup` organizes media items into logical groups. The method `listMediaItems()` of class `FileMediaManager` returns a list of MediaGroups. The class `MediaTypeFilenameFilter` is used to filter the items according to their media type.
+
+The POJOs representing the media items and the class `FileMediaBean` which represents the state of the files and how they are displayed is copied from the project `JavaFxMediaViewer`. Once these classes are copied, a new servlet called `MediaController` is created using the creation function in NB as shown below and as described in the previous practical.
+
+```{r NewServlet}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "NewServlet", pnPaperWidthScale = 0.5)
+```
+
+In the above created servlet the bean class `FileMediaBean` is used to display the filenames of the items in the directory `fxmedia`. The list of items is generated from the `FileMediaBean` object. From this object a list of `MediaGroups` is generated and for each `MediaGroup`, the list of items is extracted. In the deployment descriptor a welcome-file is specified such that the `MediaController` servlet is called, even if the user only enters the context root. That means, if in NB the WebApplication project is right-clicked and `Run` is selected, the browser opens the URL `http://localhost:8080/WebMediaManager/` and directly starts the `MediaController`-servlet.
+
+#### P 5-2: Servlet to Upload New Media
+A new servlet will be added to upload new media (images and videos) to the application. The extension for the upload functionality consists of two parts.
+
+1. Webpage `upload.html` which contains a form that allows to specify the media item to be uploaded
+2. A new servlet `UploadServlet` which handles the upload process on the server-side. The upload process is done by creating a new MediaItem POJO on the server using the MediaManager's `createMediaItem()`-method. This method requires an instance of a media item and an input stream. This input stream is taken from the collection of parts that was created from the request. 
+
+The upload of a media item is done using method `createMediaItem()` of the `MediaManager` class. That means, the upload servlet requires not only an instance of `FileMediaBean` but also an instance of `MediaManager`.
+
+
+### P 6: Developing with JavaServer Pages Technology
+The view pages for the project `WebMediaManager` are generated using the Bootstrap CSS look and feel. 
+
+#### P 6-1: Creating the Main View Page for the WebMediaManager Application
+Following good practices in servlet based MVC applications, the view should be separated from the controller servlet. Hence the part of the `MediaController` servlet that produced the HTML output of the list of media items is moved into a JSP-based view page.
+
+To be able to pass the view to a JSP, we have to forward the `FileMediaBean` to the JSP. This is done with a `RequestDispatcher` object which is created from the `request` object via the `getRequestDispatcher` method which takes the path to the JSP as input argument. The `FileMediaBean` object must be set as attribute of the `request` object. Both the `request` and the `response` objects are forwarded by the `dispatcher` object. The following code is used to process requests in the `MediaController`
+
+```
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // get the real path for directory "fxmedia" using the context
+        ServletContext context = getServletContext();
+        String realPath = context.getRealPath("fxmedia");
+        // create FileMediaModel using an instance of FileMediaBean
+        FileMediaBean fmm = new FileMediaBean(realPath);
+        fmm.loadData();
+        // forward request via dispatcher to jsp
+        request.setAttribute("fileBean", fmm);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/manager.jsp");
+        dispatcher.forward(request, response);
+}
+```
+
+From the JSP the `FileMediaBean` is accessed with a `jsp:useBean` declaration shown below
+
+```
+<jsp:useBean id="fileBean" type="com.example.bean.FileMediaBean" scope="request" />
+```
+
+From that declaration on, the components of the `FileMediaBean` can be accessed through the reference `fileBean`. 
+
+#### P 6-2: Modifying the Upload View Pages
+View Pages of the Upload servlet are also moved out of the servlet into a JSP-based view page. The process is similar to what was done under P 6-1. Important is that the process of the upload itself does not change, but only what is displayed after the upload is now served through a JSP and no longer directly from the servlet.
+
+#### P 6-3: Adding a Second View Page to Display Individual Media Objects
+The `MediaController` servlet is extended by a switch statement on an action parameter. By default the action is set to a value of "manager" which cases the controller to show the old behavior. That means the `loadData()` method of the `FileMediaBean` object is executed and forwarded to the `manager.jsp`. The second action is called when a user clicks on a link of a media item. Then the value of the action is set to `item` and that causes to open the item, i.e. images are opened in a large format and videos are played using the appropriate player.
+
+#### P 6-4: Adding a Settings View Page to the WebMediaManager
+The settings view page consists of two parts
+
+1. a new JSP called `settings.jsp` which presents the page that allows to select the options.
+2. in the controller there are two new actions. One action corresponds to the settings which shows `settings.jsp`. The second action is set when settings are changed in `settings.jsp`. This then sets the qualifier object and loads the items with the new settings.
+
+
+### P 7: JAX-RS Web Services
+This practical implements a set of RESTful Web Services to respond to GET requests to show the collection of media items or to show a single item. Items can be removed from the collection via the DELETE request. New items can be added using POST or PUT.
+
+#### P 7-1: Creating a RESTful Web Service to GET the Collection
+The RESTful web service is implemented in class `MediaResource`. In that class, annotations of the resource path, the context and HTTP-method `GET` result in the list of all media items returned when sending a GET to the defined resource path.
+
+#### P 7-2: RESTful WS to GET and DELETE Single Elements of the Collection
+Additional resources in the form of annotated methods are added to get or delete single elements
+
+#### P 7-3: RESTful WS to add new items
+New items are added using the PUT method of HTTP. This is again implemented via annotated methods in our `MediaResource` class.
+
+
+### P 8: Java RESTful Clients
+Simple Java SE client application to test the RESTful resources.
+
+#### P 8-1: Creating the client application
+The client is a simple Java SE application. It is created using the NB-Menu-items: File > New Project > Java > Java Application
+
+```{r NewJavaSeApp}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "NewJavaSeApp", pnPaperWidthScale = 0.5)
+```
+
+This application requires additional libraries. This is done by first defining a new library in the NB-library manager via Tools > Libraries and then adding the newly defined library to the project libraries. 
+
+```{r NewLibraries}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "NewLibraries", pnPaperWidthScale = 0.5)
+```
+
+Adding the new library to the project makes the content available inside of that project.
+
+```{r AddLibraryToProject}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "AddLibraryToProject", pnPaperWidthScale = 0.5)
+```
+
+#### P 8-2: Reading and deleting Media Items
+Reading and deleting works by passing the respective HTTP method calls to the server. 
+
+#### P 8-3 Adding new items
+
+
+
+```{r WriteTableOfAbbreviations, results='hide'}
+r6ob_abbrtable$writeToTsvFile()
+```
+<!-- END of document                 -- 
+  -- Below this must not be anything --> 
